@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../style/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gw.prp.calculator.controller.CalcController">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="1.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="field" alignment="CENTER_RIGHT" prefHeight="50.0" styleClass="result" />
+            <GridPane alignment="CENTER" hgap="1.0" vgap="1.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="60.0" prefWidth="60.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="60.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="60.0" prefWidth="60.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="60.0" prefWidth="60.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+                <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+                <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+                  <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnAC" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnClearClick" text="AC">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_green" />
+                     </styleClass>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSign" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSignClick" text="+/-" GridPane.columnIndex="1">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_green" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnPerc" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPercClick" text="\%" GridPane.columnIndex="2">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_green" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnDiv" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDivClick" text="/" GridPane.columnIndex="3">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_orange" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="7" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnMult" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnMultClick" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_orange" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="4" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnMinus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnMinusClick" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_orange" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="1" GridPane.rowIndex="3">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnPlus" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPlusClick" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_orange" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="digit0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDigitClick" text="0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnDot" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnDotClick" text="." GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_gray" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnResult" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnResultClick" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <styleClass>
+                        <String fx:value="digit" />
+                        <String fx:value="buttons_orange" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
