@@ -28,3 +28,5 @@ hs_err_pid*
 /CalcApp/.settings
 /CalcApp/.project
 /CalcApp/.classpath
+/ClientFX/target
+/ClientFX/.settings

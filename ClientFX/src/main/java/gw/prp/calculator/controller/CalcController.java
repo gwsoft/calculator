@@ -143,7 +143,7 @@ public class CalcController implements AutoCloseable {
               inputBufferedReader.readLine(); // przywitanie od serwera
               String msg = inputBufferedReader.readLine(); // wynik
               String formattedResponse = formatResponse(msg);
-              System.out.println("Received: " + msg);
+              System.out.println("Received: " + msg/*.replace(".", ",")*/);
               System.out.println("Formatted: " + formattedResponse);
               if (formattedResponse == null) {
                 Platform.runLater(new Runnable() {
@@ -181,7 +181,7 @@ public class CalcController implements AutoCloseable {
   }
   
   private String formatResponse(String msg) {
-    Pattern pattern = Pattern.compile("RESULT:<\\d+>\\=(\\d+)", Pattern.CASE_INSENSITIVE);
+    Pattern pattern = Pattern.compile("RESULT:<\\d+>\\=([+-]?[0-9]*\\.?[0-9]+)", Pattern.CASE_INSENSITIVE);
     Matcher matcher = pattern.matcher(msg);
     boolean matchFound = matcher.find();
     if(matchFound) {
