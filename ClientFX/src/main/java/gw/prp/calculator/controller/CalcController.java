@@ -7,10 +7,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import gw.prp.calculator.main.CalcApp;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -56,43 +61,62 @@ public class CalcController implements AutoCloseable {
 
   @FXML
   public void btnClearClick() {
+    field.clear();
   }
 
   @FXML
   public void btnSignClick() {
+    String formula = field.getText();
+    String sign = "-";
+    field.setText(String.format("%s(%s)", sign, formula));
   }
   
   @FXML
   public void btnPercClick() {
+    field.setText(field.getText() + "%");
   }
   
   @FXML
   public void btnDivClick() {
+    field.setText(field.getText() + "/");
   }
   
   @FXML
   public void btnDigitClick(ActionEvent e) {
-    System.out.println("Digit" + e.getSource());
+//    String formula = field.getText();
+//    StringBuilder sb = new StringBuilder(formula.strip());
+//    Button b = (Button) e.getSource();
+//    Double digitDbl = Double.valueOf(b.getText());
+//    String strDouble = String.format("%.1f", digitDbl);
+//    sb.append(strDouble);
+//    field.setText(sb.toString());
+
+    Button b = (Button) e.getSource();
+    field.setText(field.getText() + b.getText());
   }
   
   @FXML
   public void btnMultClick() {
+    field.setText(field.getText() + "*");
   }
   
   @FXML
   public void btnMinusClick() {
+    field.setText(field.getText() + "-");
   }
   
   @FXML
   public void btnPlusClick() {
+    field.setText(field.getText() + "+");
   }
   
   @FXML
   public void btnDotClick() {
+    field.setText(field.getText() + ".");
   }
   
   @FXML
-  public void btnResultClick() {
+  public void btnResultClick() throws IOException {
     if (field.getLength() == 0) return;
 
     String formula = field.getText().strip();
@@ -118,8 +142,24 @@ public class CalcController implements AutoCloseable {
             {
               inputBufferedReader.readLine(); // przywitanie od serwera
               String msg = inputBufferedReader.readLine(); // wynik
+              String formattedResponse = formatResponse(msg);
               System.out.println("Received: " + msg);
-              field.setText(msg);
+              System.out.println("Formatted: " + formattedResponse);
+              if (formattedResponse == null) {
+                Platform.runLater(new Runnable() {
+
+                  @Override
+                  public void run() {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Jshell Error");
+                    alert.setContentText("Nieprawidłowa formuła:\n" + formula);
+                    alert.showAndWait();
+                  }
+               
+                });
+              }
+              else
+                field.setText(formatResponse(msg));
             }
           } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -136,6 +176,24 @@ public class CalcController implements AutoCloseable {
     //sendMessage(formula);
   }
 
+  private String formatFormula(String msg) {
+    return msg;
+  }
+  
+  private String formatResponse(String msg) {
+    Pattern pattern = Pattern.compile("RESULT:<\\d+>\\=(\\d+)", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(msg);
+    boolean matchFound = matcher.find();
+    if(matchFound) {
+      System.out.println("matcher.group(0)=" + matcher.group(0));
+      System.out.println("matcher.group(1)=" + matcher.group(1));
+      return matcher.group(1);
+    } else {
+      System.out.println("ERROR");
+      return null;
+    }
+  }
+  
   public void setHost(String host) {
     this.host = host;
   }
@@ -144,9 +202,6 @@ public class CalcController implements AutoCloseable {
     this.port = port;
   }
   
-  private void sendMessage(String message) {
-    outputPrintWriter.println(message);
-  }
 
   @Override
   public void close() throws Exception {
